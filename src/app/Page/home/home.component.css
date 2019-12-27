@@ -1,0 +1,23 @@
+mat-grid-tile {
+    background: #ff4d4d6b;
+}
+
+mat-grid-tile-header,
+mat-grid-tile-footer {
+    background: rgba(0, 0, 0, 0) !important;
+}
+
+.example-card {
+    max-width: 50%;
+    background-color: #85ff474f;
+
+}
+
+.price {
+    width: 23px;
+}
+
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+}

@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <span>Sign In</span>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="User ID" dividerColor="accent" [(ngModel)]="userID" name="userID">
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Password" dividerColor="accent" [(ngModel)]="pwd" name="pwd" type="password">
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="doRegister($event)">Register</button>
+        <button mat-button (click)="doSignIn($event)">Sign In</button>
+    </mat-card-actions>
+</mat-card>
+<span class="done">
+    <button mat-fab class="done">
+        <mat-icon>check circle</mat-icon>
+    </button>
+</span>
