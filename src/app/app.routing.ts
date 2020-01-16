@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { LoginComponent } from './Page/login/login.component';
-import { ErrorComponent } from './Page/error/error.component';
+import { RouterModule, Routes } from '@angular/router';
+import { ErrorComponent } from './Page/common/error/error.component';
 import { HomeComponent } from './Page/home/home.component';
+import { LoginComponent } from './Page/login/login.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },

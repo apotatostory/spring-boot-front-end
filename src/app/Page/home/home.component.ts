@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-
+import { Component, ViewChild } from '@angular/core';
 import { BasePageComponent } from './../../Base/base-page/base-page.component';
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+
 
 @Component({
   selector: 'app-home',
@@ -11,7 +10,7 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 export class HomeComponent extends BasePageComponent {
 
   cols: number; // 欄位
-  height: number = 44; // 長度
+  height = 44; // 長度
   products: any[]; // 產品
   count = 2;
 
@@ -20,7 +19,7 @@ export class HomeComponent extends BasePageComponent {
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
 
-  @ViewChild('price') price;
+  @ViewChild('price', { static: false }) price;
 
   init(data?: any): void {
     console.log('init()........');

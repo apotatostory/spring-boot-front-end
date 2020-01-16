@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { BasePageComponent } from './../../Base/base-page/base-page.component';
+import { BasePageComponent } from '../../Base/base-page/base-page.component';
 
 @Component({
   selector: 'app-login',
