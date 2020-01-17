@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import $ from 'jquery';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CallService {
 
   constructor() { }
