@@ -1,8 +1,8 @@
 import { OnInit } from '@angular/core';
 import $ from 'jquery';
-import { CacheService } from '../base-component/service/cache.service';
-import { InjectService } from '../base-component/service/inject.service';
-import { CallService } from './../base-component/service/call.service';
+import { CacheService } from '../service/cache.service';
+import { InjectService } from '../service/inject.service';
+import { CallService } from '../service/call.service';
 
 
 export abstract class BasePageComponent implements OnInit {

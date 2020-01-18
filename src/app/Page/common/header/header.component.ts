@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BasePageComponent } from 'src/app/Base/base-page/base-page.component';
+import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 
 @Component({
   selector: 'app-header',

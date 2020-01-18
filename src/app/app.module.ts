@@ -5,15 +5,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { CacheService } from './Base/base-component/service/cache.service';
-import { CallService } from './Base/base-component/service/call.service';
-import { InjectService } from './Base/base-component/service/inject.service';
+import { CacheService } from './Base/service/cache.service';
+import { CallService } from './Base/service/call.service';
+import { InjectService } from './Base/service/inject.service';
 import { MaterialModule } from './Material/material.module';
 import { ErrorComponent } from './Page/common/error/error.component';
 import { FooterComponent } from './Page/common/footer/footer.component';
 import { HeaderComponent } from './Page/common/header/header.component';
 import { HomeComponent } from './Page/home/home.component';
 import { LoginComponent } from './Page/login/login.component';
+import { Buy00001Component } from './Page/task/buy/buy00001/buy00001.component';
 
 
 
@@ -25,6 +26,7 @@ import { LoginComponent } from './Page/login/login.component';
         LoginComponent,
         HeaderComponent,
         FooterComponent,
+        Buy00001Component,
     ],
     imports: [
         AppRoutingModule,
