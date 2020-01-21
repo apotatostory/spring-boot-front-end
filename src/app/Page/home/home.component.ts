@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { BasePageComponent } from '../../Base/component/base-page.component';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -21,6 +22,10 @@ export class HomeComponent extends BasePageComponent {
 
   @ViewChild('price', { static: false }) price;
 
+  constructor(httpClient: HttpClient) {
+    super(httpClient);
+  }
+
   init(data?: any): void {
     console.log('init()........');
 
@@ -28,7 +33,6 @@ export class HomeComponent extends BasePageComponent {
     super.sendAsync('/product/get', 'GET', {}).then(rsData => {
       this.products = rsData['products'];
     });
-
     this.cols = (window.innerWidth <= 600) ? 1 : 2;
     this.height = (window.innerWidth <= 600) ? 44 : 66;
   }

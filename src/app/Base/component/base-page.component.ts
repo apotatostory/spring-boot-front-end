@@ -1,13 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { OnInit } from '@angular/core';
-import $ from 'jquery';
-import { CacheService } from '../service/cache.service';
-import { InjectService } from '../service/inject.service';
 import { CallService } from '../service/call.service';
-
+import { InjectService } from '../service/inject.service';
 
 export abstract class BasePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.init();
@@ -17,6 +15,14 @@ export abstract class BasePageComponent implements OnInit {
    * init
    */
   abstract init(data?: any): void;
+
+
+  getMenu() {
+    const result = InjectService.injector.get(CallService).getMenu();
+    result.subscribe(x => console.log(x));
+    console.log(result);
+    // return result;
+  }
   /**
    *  send a async request to server
    * @param url
