@@ -30,9 +30,9 @@ export class HomeComponent extends BasePageComponent {
     console.log('init()........');
 
     // 測試 之後db補上
-    super.sendAsync('/product/get', 'GET', {}).then(rsData => {
-      this.products = rsData['products'];
-    });
+    // super.sendAsync('/product/get', 'GET', {}).then(rsData => {
+    //   this.products = rsData['products'];
+    // });
     this.cols = (window.innerWidth <= 600) ? 1 : 2;
     this.height = (window.innerWidth <= 600) ? 44 : 66;
   }
@@ -57,11 +57,11 @@ export class HomeComponent extends BasePageComponent {
       'deduct': () => product.count -= 1,
       'add': () => product.count += 1,
       'send': () => {
-        super.sendAsync('/product/order', 'POST', { products: this.products }).then(res => {
-          console.log(res);
-        }).catch(err => {
-          console.log(err);
-        });
+        // super.sendAsync('/product/order', 'POST', { products: this.products }).then(res => {
+        //   console.log(res);
+        // }).catch(err => {
+        //   console.log(err);
+        // });
       },
       'nothing': () => { }
     };

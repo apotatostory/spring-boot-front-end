@@ -2,8 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { OnInit } from '@angular/core';
 import { CallService } from '../service/call.service';
 import { InjectService } from '../service/inject.service';
+import { Observable } from 'rxjs';
 
 export abstract class BasePageComponent implements OnInit {
+
+  title = '';
+  menuList = [];
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -17,11 +22,8 @@ export abstract class BasePageComponent implements OnInit {
   abstract init(data?: any): void;
 
 
-  getMenu() {
-    const result = InjectService.injector.get(CallService).getMenu();
-    result.subscribe(x => console.log(x));
-    console.log(result);
-    // return result;
+  getMenu(): void {
+    InjectService.injector.get(CallService).getMenu().subscribe(menus => this.menuList = menus);
   }
   /**
    *  send a async request to server
@@ -29,7 +31,7 @@ export abstract class BasePageComponent implements OnInit {
    * @param method
    * @param data
    */
-  sendAsync(url: string, method: string, data: Object): Promise<{}> {
+  sendAsync(url: string, method: string, data: Object): Observable<any> {
     return InjectService.injector.get(CallService).sendAsync(url, method, data);
   }
 
