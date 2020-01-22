@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 import { HttpClient } from '@angular/common/http';
+
+import { BasePageComponent } from 'src/app/Base/component/base-page.component';
+import { InjectService } from 'src/app/Base/service/inject.service';
+import { CallService } from 'src/app/Base/service/call.service';
 
 @Component({
   selector: 'app-header',
@@ -16,18 +19,13 @@ export class HeaderComponent extends BasePageComponent {
   }
 
   init(data?: any): void {
-
-    super.getMenu();
-
-    // this.sendAsync('/menu/get', 'GET', {}).then((data: any[]) => {
-    //   this.menuList = data;
-    // }).catch(e => {
-    //   console.log(e);
-    // });
+    InjectService.injector.get(CallService).getMenu().subscribe(menus => this.menuList = menus);
   }
 
-  menuClick(e: any): void {
+  menuClick(menu: any, e: any): void {
     console.log('menuClick......');
+    console.log('e', e);
+    this.nextPage(menu.task, {}, false);
   }
 
 }

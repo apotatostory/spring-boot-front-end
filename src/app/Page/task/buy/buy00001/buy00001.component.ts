@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+
 import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 
 @Component({
@@ -14,6 +15,7 @@ export class Buy00001Component extends BasePageComponent {
   }
 
   init(data?: any): void {
+    console.log('342343242');
   }
 
 }

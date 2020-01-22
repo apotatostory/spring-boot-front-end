@@ -20,7 +20,7 @@
                     <button mat-menu-item [matMenuTriggerFor]="subMenu">{{menus.cateName}}</button>
                     <mat-menu #subMenu>
                         <ng-container *ngFor="let menu of menus.menuList">
-                            <button mat-menu-item *ngIf="menu.node === 2" (click)="menuClick($event)">{{menu.name}}</button>
+                            <button mat-menu-item *ngIf="menu.node === 2" (click)="menuClick(menu, $event)">{{menu.name}}</button>
                         </ng-container>
                     </mat-menu>
                 </ng-container>
