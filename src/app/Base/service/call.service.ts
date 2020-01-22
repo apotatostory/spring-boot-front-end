@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import $ from 'jquery';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -17,9 +16,8 @@ export class CallService {
   }
 
   public sendAsync(url: string, method: string, data: Object): Observable<any> {
+    console.log(`${url} ${method}上送rq: ${data}`);
 
-    // data = method === 'GET' ? data : JSON.stringify(data);
-    console.log(`${url} ${method}上送rq: ${JSON.stringify(data)}`);
     const func = {
       'GET': () => {
         return this.httpClient.get<any>(`http://127.0.0.1:8769/chat${url}`)
@@ -30,9 +28,34 @@ export class CallService {
       },
 
       'POST': () => {
-        return this.httpClient.post<any>(`http://127.0.0.1:8769/chat${url}`, data, null)
+        const httpOptions = {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        return this.httpClient.post<any>(`http://127.0.0.1:8769/chat${url}`, data, httpOptions)
           .pipe(
             tap((next) => console.log(`${url} POST接收rs`, next)),
+            catchError(this.handleError(url, {}))
+          );
+      },
+
+      'PUT': () => {
+        const httpOptions = {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        return this.httpClient.put<any>(`http://127.0.0.1:8769/chat${url}`, data, httpOptions)
+          .pipe(
+            tap((next) => console.log(`${url} PUT接收rs`, next)),
+            catchError(this.handleError(url, {}))
+          );
+      },
+
+      'DELETE': () => {
+        const httpOptions = {
+          headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+        };
+        return this.httpClient.delete<any>(`http://127.0.0.1:8769/chat${url}`, httpOptions)
+          .pipe(
+            tap((next) => console.log(`${url} DELETE接收rs`, next)),
             catchError(this.handleError(url, {}))
           );
       },
