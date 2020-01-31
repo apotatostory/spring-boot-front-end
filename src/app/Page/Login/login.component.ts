@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { BasePageComponent } from '../../Base/component/base-page.component';
 
@@ -9,9 +8,6 @@ import { BasePageComponent } from '../../Base/component/base-page.component';
 })
 export class LoginComponent extends BasePageComponent {
 
-  constructor( httpClient: HttpClient) {
-    super(httpClient);
-  }
   userID: string;
   pwd: string;
 

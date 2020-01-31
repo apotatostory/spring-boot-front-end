@@ -9,9 +9,7 @@ import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 })
 export class FooterComponent extends BasePageComponent {
 
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
-  }
+
   init(data?: any): void {
   }
 

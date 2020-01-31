@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { CacheService } from './cache.service';
 
 
-descibe('CacheService', () => {
+describe('CacheService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {

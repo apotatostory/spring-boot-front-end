@@ -12,19 +12,19 @@ export class InMemoryDataService implements InMemoryDbService {
       cateName: '大大累',
       menuList: [{
         '_id': 'AA01',
-        'task': 'buy00001', 'group': 'AA',
+        'task': 'login', 'group': 'AA',
         'node': 2,
         'name': '測試測試大大累',
         '_class': 'com.example.mongoDB.entity.Menu'
       }, {
         '_id': 'AA02',
-        'task': 'buy00001', 'group': 'AA',
+        'task': 'login', 'group': 'AA',
         'node': 2,
         'name': '測試測試大大累',
         '_class': 'com.example.mongoDB.entity.Menu'
       }, {
         '_id': 'AA03',
-        'task': 'buy00001', 'group': 'AA',
+        'task': 'login', 'group': 'AA',
         'node': 2,
         'name': '測試測試大大累',
         '_class': 'com.example.mongoDB.entity.Menu'
@@ -54,13 +54,15 @@ export class InMemoryDataService implements InMemoryDbService {
       cateName: '大C大31',
       menuList: [{
         '_id': 'CC01',
-        'task': 'buy00001', 'group': 'CC',
+        'task': 'home',
+        'group': 'CC',
         'node': 2,
         'name': '大C01',
         '_class': 'com.example.mongoDB.entity.Menu'
       }, {
         '_id': 'CC02',
-        'task': 'buy00001', 'group': 'CC',
+        'task': 'home',
+        'group': 'CC',
         'node': 2,
         'name': '大C333',
         '_class': 'com.example.mongoDB.entity.Menu'

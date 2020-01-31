@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { CallService } from './call.service';
 
 
-descibe('CallService', () => {
+describe('CallService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {

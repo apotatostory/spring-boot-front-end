@@ -10,10 +10,6 @@ import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 })
 export class Buy00001Component extends BasePageComponent {
 
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
-  }
-
   init(data?: any): void {
     console.log('342343242');
   }

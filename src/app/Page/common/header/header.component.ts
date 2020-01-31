@@ -14,12 +14,8 @@ export class HeaderComponent extends BasePageComponent {
 
   menuList: any[];
 
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
-  }
-
   init(data?: any): void {
-    InjectService.injector.get(CallService).getMenu().subscribe(menus => this.menuList = menus);
+    this.getMenu().subscribe(menus => this.menuList = menus);
   }
 
   menuClick(menu: any, e: any): void {
