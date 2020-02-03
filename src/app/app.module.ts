@@ -21,6 +21,7 @@ import { ErrorComponent } from './Page/common/error/error.component';
 import { FooterComponent } from './Page/common/footer/footer.component';
 import { HeaderComponent } from './Page/common/header/header.component';
 import { Buy00001Component } from './Page/task/buy/buy00001/buy00001.component';
+import { Buy00002Component } from './Page/task/buy/buy00002/buy00002.component';
 
 
 
@@ -33,6 +34,7 @@ import { Buy00001Component } from './Page/task/buy/buy00001/buy00001.component';
         HeaderComponent,
         FooterComponent,
         Buy00001Component,
+        Buy00002Component,
     ],
     imports: [
         AppRoutingModule,
