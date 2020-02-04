@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { OnInit } from '@angular/core';
+import { OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { InjectService } from '../service/inject.service';
 
 
 
-export abstract class BasePageComponent implements OnInit {
+export abstract class BasePageComponent implements OnInit, OnChanges {
 
   private httpClient: HttpClient;
   private router: Router;
@@ -21,6 +21,21 @@ export abstract class BasePageComponent implements OnInit {
     this.router = InjectService.injector.get(Router);
     console.log('BasePageComponent', 'ngOnInit');
     this.init();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('BasePageComponent', 'ngOnChanges', changes);
+    // tslint:disable-next-line: forin
+    for (const propName in changes) {
+      const changedProp = changes[propName];
+      const to = JSON.stringify(changedProp.currentValue);
+      if (changedProp.isFirstChange()) {
+        console.log('Initial propName: ', propName, ', value: ', to);
+      } else {
+        const from = JSON.stringify(changedProp.previousValue);
+        console.log('propName: ', propName, 'changed value from ', from, ' to', to);
+      }
+    }
   }
 
   /**
