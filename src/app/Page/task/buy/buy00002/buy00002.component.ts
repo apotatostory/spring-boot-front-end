@@ -9,17 +9,18 @@ import { BasePageComponent } from 'src/app/Base/component/base-page.component';
   styleUrls: ['./buy00002.component.css']
 })
 export class Buy00002Component extends BasePageComponent {
-  private _name: string;
+  // private _name: string;
+  @Input() name: string;
 
-  @Input() set name(name: string) {
-    console.log('set name:', name);
-    this._name = name.toUpperCase();
-  }
+  // @Input() set name(name: string) {
+  //   console.log('set name:', name);
+  //   this._name = name && name.toUpperCase();
+  // }
 
-  get name(): string {
-    return this._name;
-    // return '32423';
-  }
+  // get name(): string {
+  //   return this._name;
+  // }
+
   init(data?: any): void {
 
   }

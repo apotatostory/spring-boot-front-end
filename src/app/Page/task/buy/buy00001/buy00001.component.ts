@@ -11,7 +11,6 @@ import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 export class Buy00001Component extends BasePageComponent {
 
   init(data?: any): void {
-    console.log('342343242');
   }
 
 }
