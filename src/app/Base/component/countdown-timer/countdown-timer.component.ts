@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, EventEmitter } from '@angular/core';
 import { BasePageComponent } from '../base-page.component';
 
 @Component({
@@ -8,15 +8,23 @@ import { BasePageComponent } from '../base-page.component';
 })
 export class CountdownTimerComponent extends BasePageComponent {
 
-  private intervalId: NodeJS.Timeout;
-  private message: string;
-  private second: number;
+  intervalId: NodeJS.Timeout;
+  message: string;
+  second: number;
+  title = 'CountdownTimer';
 
   @Input() initSecond = 10;
 
   init() {
     this.start();
-    this.onChange = this.start.bind(this);
+  }
+
+  onChange(changes) {
+    this.start();
+  }
+
+  onDestroy() {
+    clearInterval(this.intervalId);
   }
 
   start() {

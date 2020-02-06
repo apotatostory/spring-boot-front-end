@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 
 @Component({
@@ -8,6 +8,7 @@ import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 })
 export class Sell00001Component extends BasePageComponent {
 
+  title = 'Sell00001';
 
   init(data?: any): void {
   }

@@ -1,47 +1,58 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { OnChanges, OnInit, SimpleChanges, EventEmitter, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { InjectService } from '../service/inject.service';
-import { EventEmitter } from 'protractor';
 
-export abstract class BasePageComponent implements OnInit, OnChanges {
+export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy {
 
   private httpClient: HttpClient;
   private router: Router;
   private apiUrl = 'api/menu';
-  title = '';
-  onChange;
+
+  protected task = '';
+  /* 元件的自己指定，頁面的應該可以用底層搞 */
+  protected title: string;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.title, 'init...');
     this.httpClient = InjectService.injector.get(HttpClient);
     this.router = InjectService.injector.get(Router);
     this.init();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.title, 'onChange...');
     for (const propName in changes) {
       if (changes.hasOwnProperty(propName)) {
         const changedProp = changes[propName];
         const to = JSON.stringify(changedProp.currentValue);
         if (changedProp.isFirstChange()) {
-          console.log('Initial propName: ', propName, ', value: ', to);
+          console.log(this.title, `Initial propName: ${propName}, value: ${to}`);
         } else {
           const from = JSON.stringify(changedProp.previousValue);
-          console.log('propName: ', propName, 'changed value from ', from, ' to', to);
+          console.log(this.title, `propName: ${propName} changed value from ${from}, to ${to}`);
         }
       }
     }
-    this.onChange();
+    if (this.onChange) { this.onChange(changes); }
+  }
+
+  ngOnDestroy() {
+    this.onDestroy();
   }
 
   /**
    * init
    */
-  abstract init(data?: any): void;
+  protected abstract init(data?: any): void;
+
+  protected onChange(changes?: SimpleChanges): void { }
+
+  protected onDestroy(): void { }
 
   /**
    *  send a async request to server
@@ -101,7 +112,6 @@ export abstract class BasePageComponent implements OnInit, OnChanges {
     };
 
     return func[method] ? func[method]() : func['nothing']();
-    // return InjectService.injector.get(CallService).sendAsync(url, method, data);
   }
 
   // 同步 (未完成)
@@ -118,21 +128,14 @@ export abstract class BasePageComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
+   * Handle all error
+   * @param operation - name of the operation
+   * @param result - default value (nullable)
    */
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
+      console.error(error);
       console.error(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
