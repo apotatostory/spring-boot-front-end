@@ -10,6 +10,8 @@ import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 })
 export class Buy00001Component extends BasePageComponent {
 
+  title = 'Buy00001';
+
   init(data?: any): void {
   }
 

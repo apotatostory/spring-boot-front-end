@@ -1,1 +1,3 @@
-<p>sell00001 works!</p>
+<h2>Mission Control</h2>
+<button (click)="doAction()">Announce mission</button>
+<app-emit *ngFor="let person of people" [person]="person"></app-emit>

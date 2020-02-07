@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { OnChanges, OnInit, SimpleChanges, EventEmitter, OnDestroy } from '@angular/core';
+import { OnChanges, OnInit, SimpleChanges, EventEmitter, OnDestroy, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { InjectService } from '../service/inject.service';
 
+@Component({})
 export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy {
 
   private httpClient: HttpClient;
@@ -12,8 +13,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
   private apiUrl = 'api/menu';
 
   protected task = '';
-  /* 元件的自己指定，頁面的應該可以用底層搞 */
-  protected title: string;
+  protected abstract title: string;
 
   constructor() { }
 

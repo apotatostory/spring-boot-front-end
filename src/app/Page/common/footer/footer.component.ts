@@ -9,6 +9,7 @@ import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 })
 export class FooterComponent extends BasePageComponent {
 
+  title = 'Footer';
 
   init(data?: any): void {
   }

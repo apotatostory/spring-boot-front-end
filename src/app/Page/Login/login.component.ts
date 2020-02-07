@@ -8,11 +8,11 @@ import { BasePageComponent } from '../../Base/component/base-page.component';
 })
 export class LoginComponent extends BasePageComponent {
 
+  title = 'Login';
   userID: string;
   pwd: string;
 
   init(page): void {
-    console.log('LoginComponent init...');
   }
 
   doRegister(e): void {

@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
 import { BasePageComponent } from 'src/app/Base/component/base-page.component';
-import { InjectService } from 'src/app/Base/service/inject.service';
-import { CallService } from 'src/app/Base/service/call.service';
+
 
 @Component({
   selector: 'app-header',
@@ -11,6 +8,8 @@ import { CallService } from 'src/app/Base/service/call.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent extends BasePageComponent {
+
+  title = 'Header';
 
   menuList: any[];
 

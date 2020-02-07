@@ -9,6 +9,7 @@ import { BasePageComponent } from '../../Base/component/base-page.component';
 })
 export class HomeComponent extends BasePageComponent {
 
+  title = 'Home';
   cols: number; // 欄位
   height = 44; // 長度
   products: any[]; // 產品

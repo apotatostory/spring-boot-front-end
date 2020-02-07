@@ -24,6 +24,8 @@ import { Buy00001Component } from './Page/task/buy/buy00001/buy00001.component';
 import { Buy00002Component } from './Page/task/buy/buy00002/buy00002.component';
 import { Sell00001Component } from './Page/task/sell/sell00001/sell00001.component';
 import { CountdownTimerComponent } from './Base/component/countdown-timer/countdown-timer.component';
+import { EmitComponent } from './Base/component/emit/emit.component';
+import { MissionService } from './Base/service/mission.service';
 
 
 
@@ -39,6 +41,7 @@ import { CountdownTimerComponent } from './Base/component/countdown-timer/countd
         Buy00002Component,
         Sell00001Component,
         CountdownTimerComponent,
+        EmitComponent,
     ],
     imports: [
         AppRoutingModule,
