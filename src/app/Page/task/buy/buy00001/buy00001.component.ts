@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-
 import { BasePageComponent } from 'src/app/Base/component/base-page.component';
+
 
 @Component({
   selector: 'app-buy00001',

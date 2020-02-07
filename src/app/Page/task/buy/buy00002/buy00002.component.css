@@ -1,0 +1,7 @@
+:host{
+    color: cornflowerblue;
+}
+
+:host /deep/ h3 {
+    font-style: italic;
+}

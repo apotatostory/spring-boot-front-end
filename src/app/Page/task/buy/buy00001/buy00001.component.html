@@ -1,5 +1,5 @@
 <p>buy00001 works!</p>
-<input [(ngModel)]="inputtxt" type="text">
-<app-buy00002 #buy22 *ngIf="inputtxt" [name]="inputtxt"></app-buy00002>
+<input class="active" [(ngModel)]="inputtxt" type="text">
+<app-buy00002 #buy22 [name]="inputtxt"></app-buy00002>
 <app-countdown-timer *ngIf="inputtxt" [initSecond]="inputtxt"></app-countdown-timer>
 <app-sell00001></app-sell00001>

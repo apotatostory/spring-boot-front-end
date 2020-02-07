@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { OnChanges, OnInit, SimpleChanges, EventEmitter, OnDestroy, Component } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
@@ -8,19 +8,17 @@ import { InjectService } from '../service/inject.service';
 @Component({})
 export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy {
 
-  private httpClient: HttpClient;
-  private router: Router;
   private apiUrl = 'api/menu';
 
   protected task = '';
   protected abstract title: string;
 
-  constructor() { }
+  constructor(private httpClient?: HttpClient, private router?: Router) { }
 
   ngOnInit() {
     console.log(this.title, 'init...');
-    this.httpClient = InjectService.injector.get(HttpClient);
-    this.router = InjectService.injector.get(Router);
+    // this.httpClient = InjectService.injector.get(HttpClient);
+    // this.router = InjectService.injector.get(Router);
     this.init();
   }
 
