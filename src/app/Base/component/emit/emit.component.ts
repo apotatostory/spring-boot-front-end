@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { BasePageComponent } from '../base-page.component';
+import { Component, Input } from '@angular/core';
 import { MissionService } from '../../service/mission.service';
+import { BasePageComponent } from '../base-page.component';
 
 @Component({
   selector: 'app-emit',
   templateUrl: './emit.component.html',
-  styleUrls: ['./emit.component.css']
+  styleUrls: ['./emit.component.css'],
 })
 export class EmitComponent extends BasePageComponent {
 

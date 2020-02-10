@@ -20,7 +20,7 @@ export class HomeComponent extends BasePageComponent {
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 100];
 
-  @ViewChild('price', { static: false }) price;
+  @ViewChild('price') price;
 
   init(data?: any): void {
     console.log('init()........');
