@@ -1,7 +1,8 @@
 <p>buy00001 works!</p>
-<input class="active" [(ngModel)]="inputtxt" type="text">
+<input class="active" [(ngModel)]="inputtxt" type="text" (ngModelChange)="loadComponent()">
 <app-buy00002 #buy22 [name]="inputtxt"></app-buy00002>
 <app-countdown-timer *ngIf="inputtxt" [initSecond]="inputtxt"></app-countdown-timer>
 <app-sell00001></app-sell00001>
 <ng-template appDynamicLoader></ng-template>
+
 
