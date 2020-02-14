@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { PopupComponent } from './popup/popup.component';
 
 export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy {
 
@@ -11,7 +13,11 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
   protected task = '';
   protected abstract title: string;
 
-  constructor(private httpClient?: HttpClient, private router?: Router) { }
+  constructor(
+    private httpClient?: HttpClient,
+    private router?: Router,
+    public dialog?: MatDialog) {
+  }
 
   ngOnInit() {
     console.log(this.title, 'init...');
@@ -132,6 +138,23 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
       console.error(`${operation} failed: ${error.message}`);
       return of(result as T);
     };
+  }
+
+  alert() {
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '250px',
+      data: {name: 'this.name', animal: 'this.animal'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
+
+    // const component: NgElement & WithProperties<any> = document.createElement('app-alert') as any;
+    // document.body.firstElementChild.firstElementChild.children[1].children[1].appendChild(component);
+
+
   }
 
 }

@@ -1,12 +1,11 @@
-import { Component, Input, EventEmitter } from '@angular/core';
-import { BasePageComponent } from '../base-page.component';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-countdown-timer',
   templateUrl: './countdown-timer.component.html',
   styleUrls: ['./countdown-timer.component.css']
 })
-export class CountdownTimerComponent extends BasePageComponent {
+export class CountdownTimerComponent implements OnInit, OnChanges, OnDestroy {
 
   intervalId: NodeJS.Timeout;
   message: string;
@@ -15,15 +14,15 @@ export class CountdownTimerComponent extends BasePageComponent {
 
   @Input() initSecond = 10;
 
-  init() {
+  ngOnChanges(changes: SimpleChanges): void {
     this.start();
   }
 
-  onChange(changes) {
+  ngOnInit() {
     this.start();
   }
 
-  onDestroy() {
+  ngOnDestroy() {
     clearInterval(this.intervalId);
   }
 

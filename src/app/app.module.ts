@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { CountdownTimerComponent } from './Base/component/countdown-timer/countdown-timer.component';
 import { EmitComponent } from './Base/component/emit/emit.component';
+import { PopupComponent } from './Base/component/popup/popup.component';
 import { DynamicLoaderDirective } from './Base/directive/dynamic-loader.directive';
 import { CacheService } from './Base/service/cache.service';
 import { CallService } from './Base/service/call.service';
@@ -25,11 +26,6 @@ import { Buy00001Component } from './Page/task/buy/buy00001/buy00001.component';
 import { Buy00002Component } from './Page/task/buy/buy00002/buy00002.component';
 import { Sell00001Component } from './Page/task/sell/sell00001/sell00001.component';
 
-
-
-
-
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -44,6 +40,7 @@ import { Sell00001Component } from './Page/task/sell/sell00001/sell00001.compone
         CountdownTimerComponent,
         EmitComponent,
         DynamicLoaderDirective,
+        PopupComponent,
     ],
     imports: [
         AppRoutingModule,

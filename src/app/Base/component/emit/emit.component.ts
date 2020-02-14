@@ -7,7 +7,7 @@ import { BasePageComponent } from '../base-page.component';
   templateUrl: './emit.component.html',
   styleUrls: ['./emit.component.css'],
 })
-export class EmitComponent extends BasePageComponent {
+export class EmitComponent {
 
   title = 'EmitComponent';
   mission = '無所事事三人組';
@@ -15,7 +15,6 @@ export class EmitComponent extends BasePageComponent {
   @Input() person: string;
 
   constructor(private missionService: MissionService) {
-    super();
     this.missionService.missionAnnounced$.subscribe(x => {
       console.log(this.person, x);
       this.mission = x;

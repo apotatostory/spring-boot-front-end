@@ -1,9 +1,9 @@
-import { Sample } from './../../../../Base/model/sample';
 import { Component, ComponentFactoryResolver, ViewChild } from '@angular/core';
 import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 import { DynamicLoaderDirective } from 'src/app/Base/directive/dynamic-loader.directive';
 import { Sell00001Component } from '../../sell/sell00001/sell00001.component';
 import { Buy00002Component } from '../buy00002/buy00002.component';
+import { Sample } from './../../../../Base/model/sample';
 
 
 @Component({
@@ -28,12 +28,12 @@ export class Buy00001Component extends BasePageComponent {
 
   init(data?: any): void {
     // setInterval(() => {
-      this.loadComponent();
+    this.loadComponent();
     // }, 1000);
   }
 
   showPopup() {
-    document.createElement('');
+    this.alert();
   }
 
   loadComponent() {
