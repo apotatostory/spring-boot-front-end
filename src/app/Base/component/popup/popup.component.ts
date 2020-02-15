@@ -13,7 +13,11 @@ export class PopupComponent {
     public dialogRef: MatDialogRef<PopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  /**
+   * 可以call onNoClick()來傳遞值,
+   * 也可以用[mat-dialog-close]=""來直接綁在html
+   */
+  onNoClick(value?: string): void {
+    this.dialogRef.close(value);
   }
 }

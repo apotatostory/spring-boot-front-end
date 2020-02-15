@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { InjectService } from '../service/inject.service';
 import { PopupComponent } from './popup/popup.component';
 
 export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy {
@@ -12,12 +13,6 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
 
   protected task = '';
   protected abstract title: string;
-
-  constructor(
-    private httpClient?: HttpClient,
-    private router?: Router,
-    public dialog?: MatDialog) {
-  }
 
   ngOnInit() {
     console.log(this.title, 'init...');
@@ -63,9 +58,10 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
   sendAsync(url: string, method: string, data: any): Observable<any> {
     console.log(`${url} ${method}上送rq: ${data}`);
 
+    const httpClient = InjectService.injector.get(HttpClient);
     const func = {
       'GET': () => {
-        return this.httpClient.get<any>(`http://127.0.0.1:8769/chat${url}`)
+        return httpClient.get<any>(`http://127.0.0.1:8769/chat${url}`)
           .pipe(
             tap((next) => console.log(`${url} GET接收rs`, next)),
             catchError(this.handleError(url, {}))
@@ -76,7 +72,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
         const httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return this.httpClient.post<any>(`http://127.0.0.1:8769/chat${url}`, data, httpOptions)
+        return httpClient.post<any>(`http://127.0.0.1:8769/chat${url}`, data, httpOptions)
           .pipe(
             tap((next) => console.log(`${url} POST接收rs`, next)),
             catchError(this.handleError(url, {}))
@@ -87,7 +83,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
         const httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return this.httpClient.put<any>(`http://127.0.0.1:8769/chat${url}`, data, httpOptions)
+        return httpClient.put<any>(`http://127.0.0.1:8769/chat${url}`, data, httpOptions)
           .pipe(
             tap((next) => console.log(`${url} PUT接收rs`, next)),
             catchError(this.handleError(url, {}))
@@ -98,7 +94,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
         const httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return this.httpClient.delete<any>(`http://127.0.0.1:8769/chat${url}`, httpOptions)
+        return httpClient.delete<any>(`http://127.0.0.1:8769/chat${url}`, httpOptions)
           .pipe(
             tap((next) => console.log(`${url} DELETE接收rs`, next)),
             catchError(this.handleError(url, {}))
@@ -116,10 +112,12 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
 
   // 同步 (未完成)
   nextPage(url: string, data: any, invoke: boolean): void {
+    const router = InjectService.injector.get(Router);
+
     if (invoke) {
       this.sendAsync(url, 'POST', data);
     } else {
-      this.router.navigate([url]);
+      router.navigate([url]);
     }
   }
 
@@ -140,14 +138,17 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
     };
   }
 
-  alert() {
-    const dialogRef = this.dialog.open(PopupComponent, {
+  alert(content: string) {
+    console.log(this.title, 'alert');
+
+    const dialog = InjectService.injector.get(MatDialog);
+    const dialogRef = dialog.open(PopupComponent, {
       width: '250px',
-      data: {name: 'this.name', animal: 'this.animal'}
+      data: { title: this.title, content: content }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      console.log('The dialog was closed', result);
       // this.animal = result;
     });
 

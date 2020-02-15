@@ -33,7 +33,7 @@ export class Buy00001Component extends BasePageComponent {
   }
 
   showPopup() {
-    this.alert();
+    this.alert('showPopup');
   }
 
   loadComponent() {
