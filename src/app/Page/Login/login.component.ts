@@ -13,9 +13,11 @@ export class LoginComponent extends BasePageComponent {
   pwd: string;
 
   init(page): void {
+    this.userID = 'A117107506';
   }
 
   doRegister(e): void {
+    console.log(e);
     console.log('doRegister...');
   }
 

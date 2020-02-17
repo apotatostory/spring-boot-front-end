@@ -7,14 +7,16 @@
     <mat-card-content>
         <form class="example-form">
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="User ID" dividerColor="accent" [(ngModel)]="userID" name="userID">
+                <mat-label>User ID</mat-label>
+                <input matInput dividerColor="accent" [(ngModel)]="userID" name="userID">
             </mat-form-field>
             <mat-form-field class="example-full-width">
-                <input matInput placeholder="Password" dividerColor="accent" [(ngModel)]="pwd" name="pwd" type="password">
+                <mat-label>Password</mat-label>
+                <input matInput dividerColor="accent" [(ngModel)]="pwd" name="pwd" type="password">
             </mat-form-field>
         </form>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions align="end">
         <button mat-button (click)="doRegister($event)">Register</button>
         <button mat-button (click)="doSignIn($event)">Sign In</button>
     </mat-card-actions>
