@@ -1,15 +1,19 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+
 import { InjectService } from '../service/inject.service';
+
 import { PopupComponent } from './popup/popup.component';
 
-export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy {
 
-  private apiUrl = 'api/menu';
+
+
+export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy {
 
   protected task = '';
   protected abstract title: string;
@@ -122,7 +126,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   public getMenu(): Observable<any[]> {
-    return this.sendAsync(this.apiUrl, 'GET', null);
+    return this.sendAsync('/menu/get', 'GET', null);
   }
 
   /**
@@ -156,6 +160,50 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
     // document.body.firstElementChild.firstElementChild.children[1].children[1].appendChild(component);
 
 
+  }
+
+  /**
+   * 爬蟲-網頁(尚未完成)
+   * @param url
+   * @param method
+   */
+  protected webCrawler(url: string, method: string): Observable<any> {
+    const httpClient = InjectService.injector.get(HttpClient);
+    const params = new HttpParams().set('a', '1030');
+    params.set('b', '1030');
+
+    return httpClient
+      .get(`/z/zg/zgb/zgb0.djhtm`, {
+        params: params,
+        observe: 'response',
+        responseType: 'text',
+      })
+      .pipe(
+        tap((next) => console.log(`GET接收rs`, next)),
+        catchError(this.handleError(url, {}))
+      );
+  }
+
+  /**
+   * 爬蟲-券商(尚未完成)
+   * @param url
+   * @param method
+   */
+  protected webCrawlerBroker(url: string, method: string): Observable<any> {
+    const httpClient = InjectService.injector.get(HttpClient);
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'text/javascript'
+    });
+
+    return httpClient
+      .get(`/z/js/zbrokerjs.djjs`, {
+        headers
+      })
+      .pipe(
+        tap((next) => console.log(`GET接收rs`, next)),
+        catchError(this.handleError(url, {}))
+      );
   }
 
 }

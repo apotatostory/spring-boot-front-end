@@ -1,0 +1,7 @@
+{
+  "/z": {
+    "target": "http://kgieworld.moneydj.com/",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

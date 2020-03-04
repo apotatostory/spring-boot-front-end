@@ -1,8 +1,11 @@
 import { Component, ComponentFactoryResolver, ViewChild } from '@angular/core';
+import { HttpResponse } from '@angular/common/http';
+
 import { BasePageComponent } from 'src/app/Base/component/base-page.component';
 import { DynamicLoaderDirective } from 'src/app/Base/directive/dynamic-loader.directive';
-import { Sell00001Component } from '../../sell/sell00001/sell00001.component';
+
 import { Buy00002Component } from '../buy00002/buy00002.component';
+import { Sell00001Component } from '../../sell/sell00001/sell00001.component';
 import { Sample } from './../../../../Base/model/sample';
 
 
@@ -33,7 +36,16 @@ export class Buy00001Component extends BasePageComponent {
   }
 
   showPopup() {
-    this.alert('showPopup');
+    // this.webCrawler('', '').subscribe((res: HttpResponse<any>) => {
+    //   console.log('爬蟲:', res);
+    //   debugger;
+    // });
+
+    this.webCrawlerBroker('', '').subscribe((res: HttpResponse<any>) => {
+      console.log('爬蟲:', res);
+      debugger;
+    });
+    // this.alert('showPopup');
   }
 
   loadComponent() {
