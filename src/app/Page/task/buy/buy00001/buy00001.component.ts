@@ -38,13 +38,13 @@ export class Buy00001Component extends BasePageComponent {
   showPopup() {
     // this.webCrawler('', '').subscribe((res: HttpResponse<any>) => {
     //   console.log('爬蟲:', res);
+    // });
+    this.sendAsync('/broker/get', 'GET', null).subscribe(x => console.log(x));
+
+    // this.webCrawlerBroker('', '').subscribe((res: HttpResponse<any>) => {
+    //   console.log('爬蟲:', res);
     //   debugger;
     // });
-
-    this.webCrawlerBroker('', '').subscribe((res: HttpResponse<any>) => {
-      console.log('爬蟲:', res);
-      debugger;
-    });
     // this.alert('showPopup');
   }
 

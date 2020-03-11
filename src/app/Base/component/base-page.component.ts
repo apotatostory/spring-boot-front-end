@@ -17,6 +17,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
 
   protected task = '';
   protected abstract title: string;
+  private rootUrl = 'http://127.0.0.1:8769';
 
   ngOnInit() {
     console.log(this.title, 'init...');
@@ -65,7 +66,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
     const httpClient = InjectService.injector.get(HttpClient);
     const func = {
       'GET': () => {
-        return httpClient.get<any>(`http://127.0.0.1:8769/chat${url}`)
+        return httpClient.get<any>(`${this.rootUrl}/chat${url}`)
           .pipe(
             tap((next) => console.log(`${url} GET接收rs`, next)),
             catchError(this.handleError(url, {}))
@@ -76,7 +77,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
         const httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return httpClient.post<any>(`http://127.0.0.1:8769/chat${url}`, data, httpOptions)
+        return httpClient.post<any>(`${this.rootUrl}/chat${url}`, data, httpOptions)
           .pipe(
             tap((next) => console.log(`${url} POST接收rs`, next)),
             catchError(this.handleError(url, {}))
@@ -87,7 +88,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
         const httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return httpClient.put<any>(`http://127.0.0.1:8769/chat${url}`, data, httpOptions)
+        return httpClient.put<any>(`${this.rootUrl}/chat${url}`, data, httpOptions)
           .pipe(
             tap((next) => console.log(`${url} PUT接收rs`, next)),
             catchError(this.handleError(url, {}))
@@ -98,7 +99,7 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
         const httpOptions = {
           headers: new HttpHeaders({ 'Content-Type': 'application/json' })
         };
-        return httpClient.delete<any>(`http://127.0.0.1:8769/chat${url}`, httpOptions)
+        return httpClient.delete<any>(`${this.rootUrl}/chat${url}`, httpOptions)
           .pipe(
             tap((next) => console.log(`${url} DELETE接收rs`, next)),
             catchError(this.handleError(url, {}))

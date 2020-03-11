@@ -12,7 +12,6 @@ import { MaterialModule } from './Material/material.module';
 import { DynamicLoaderDirective } from './Base/directive/dynamic-loader.directive';
 import { CacheService } from './Base/service/cache.service';
 import { CallService } from './Base/service/call.service';
-import { InMemoryDataService } from './Base/service/in-memory-data.service';
 import { InjectService } from './Base/service/inject.service';
 import { MissionService } from './Base/service/mission.service';
 import { HomeComponent } from './Page/home/home.component';
@@ -53,14 +52,12 @@ import { Sell00001Component } from './Page/task/sell/sell00001/sell00001.compone
         FormsModule,
         MaterialModule,
         HttpClientModule,
-        // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
     ],
     exports: [],
     providers: [
         InjectService,
         CallService,
         CacheService,
-        InMemoryDataService,
         MissionService,
         { provide: APP_BASE_HREF, useValue: '/' }
     ],
