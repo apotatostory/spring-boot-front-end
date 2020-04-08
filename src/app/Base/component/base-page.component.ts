@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -9,6 +9,9 @@ import { catchError, tap } from 'rxjs/operators';
 import { InjectService } from '../service/inject.service';
 
 import { PopupComponent } from './popup/popup.component';
+
+
+
 
 
 
@@ -164,46 +167,22 @@ export abstract class BasePageComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   /**
-   * 爬蟲-網頁(尚未完成)
-   * @param url
+   * 爬券商進出網頁
    * @param method
    */
-  protected webCrawler(url: string, method: string): Observable<any> {
+  protected webCrawler(brokerVo: any): Observable<any> {
     const httpClient = InjectService.injector.get(HttpClient);
-    const params = new HttpParams().set('a', '1030');
-    params.set('b', '1030');
+    const { brokerId, branchId, type, sDate, eDate } = brokerVo;
+    // console.log(`/z/zg/zgb/zgb0.djhtm?a=${brokerId}&b=${branchId}&c=${type}&e=${sDate}&f=${eDate}`);
 
     return httpClient
-      .get(`/z/zg/zgb/zgb0.djhtm`, {
-        params: params,
+      .get(`/z/zg/zgb/zgb0.djhtm?a=${brokerId}&b=${branchId}&c=${type}&e=${sDate}&f=${eDate}`, {
         observe: 'response',
         responseType: 'text',
       })
       .pipe(
-        tap((next) => console.log(`GET接收rs`, next)),
-        catchError(this.handleError(url, {}))
-      );
-  }
-
-  /**
-   * 爬蟲-券商(尚未完成)
-   * @param url
-   * @param method
-   */
-  protected webCrawlerBroker(url: string, method: string): Observable<any> {
-    const httpClient = InjectService.injector.get(HttpClient);
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'text/javascript'
-    });
-
-    return httpClient
-      .get(`/z/js/zbrokerjs.djjs`, {
-        headers
-      })
-      .pipe(
-        tap((next) => console.log(`GET接收rs`, next)),
-        catchError(this.handleError(url, {}))
+        tap((next) => next['branchId'] = branchId),
+        catchError(this.handleError('webCrawler', {}))
       );
   }
 

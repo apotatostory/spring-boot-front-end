@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.conf.json --port 9999 ",
+    "db": "mongod -f \"E:/Program Files/MongoDB/Server/4.1.5/mongod.conf\"",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
